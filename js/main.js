@@ -1,19 +1,23 @@
 "use strict";
 
 {
-  const year = 2020;
-  const month = 12; //11月
+  const timer = document.getElementById("timer");
+  const start = document.getElementById("start");
+  const stop = document.getElementById("stop");
+  const reset = document.getElementById("reset");
 
-  function getCalendarBody() {
-    const dates = [];
-    const lastDate = new Date(year, month + 1, 0).getDate();
+  let startTime;
 
-    for (let i = 1; i <= lastDate; i++) {
-      dates.push(i);
-    }
+  function countUp() {
+    console.log(Date.now() - startTime);
 
-    console.log(dates);
+    setTimeout(() => {
+      countUp();
+    }, 10);
   }
 
-  getCalendarBody();
+  start.addEventListener("click", () => {
+    startTime = Date.now();
+    countUp();
+  });
 }
